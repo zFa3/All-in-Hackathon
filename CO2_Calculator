@@ -1,49 +1,14 @@
 #!/usr/bin/env python3
-
-# TODO
-# finish creating setter functions
-# finish calculation function
-# tests
+# All In Hackathon
 
 class Carbon_Footprint:
     def __init__(self):
+        # Outside temperature used to calculate
+        # the amount of points you get for AC
         self.summer_temperature = 32
         self.carbon_points = 0
-        self.answer_values = {
 
-        }        
-
-        # The Average Canadian creates 31808 lbs of CO2 per year
-
-        ######################################################
-        # energy usage -
-        # HVAC -
-        # Type of house -
-        # Household Members (in real life to be more accurate)
-        # All below have to take into account household members  
-        # house size
-
-
-        # dishwashers - Hang dry clothes, Light bulbs
-        # Food bought
-        # Water Consumption
-        # purchases - (clothes, electronics)
-        # Transportation costs - (Bike/Drive)
-
-
-
-        # You feel lucky that you have a decent job
-        # as a construction worker for a large corporation,
-        # you get decent pay and some benefits
-
-        # The problem? It's located downtown, some 40 minutes
-        # from your house. How do you plan to travel today?
-        
-        # Drive there
-        # Take the bus
-        # Use your 4 year old bike
-        ######################################################
-    
+        # The Average Canadian creates 31808 lbs of CO2 per year   
 
         # Variables that you change 
         # based on your lifestyle
@@ -79,7 +44,7 @@ class Carbon_Footprint:
         self.house_temp = summer_temp
 
     def set_kWh(self, n):
-        self.kWh = n
+        self.kWh = n * 365
 
     def set_type_of_food(self, n):
         self.type_of_food = n
@@ -117,15 +82,9 @@ class Carbon_Footprint:
         print(int(((self.summer_temperature - self.house_temp) * (self.house_size // 1000)) * self.HVAC_weight))
         self.carbon_points += int(((self.summer_temperature - self.house_temp) * (self.house_size // 1000)) * self.HVAC_weight)
 
+        # Add the points for house size (in sqft)
         self.carbon_points += self.house_size // 400
-
-        self.carbon_points += self.dishwasher + self.transportation_type + self.type_of_food
+        # adding the rest of the non-input/non-slider questions
+        self.carbon_points += self.dishwasher + self.transportation_type + self.type_of_food + self.washing_machine + self.appliances
 
         return self.carbon_points
-
-a = Carbon_Footprint()
-a.set_house_size(int(input("house Size in Sqft")))
-a.set_house_temp(int(input("house temp in c")))
-a.set_household_members(int(input("members")))
-a.set_kWh(int(input("kwh")))
-print(a.calculate_footprint())
