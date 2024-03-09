@@ -27,7 +27,7 @@ class Carbon_Footprint:
         # on the amount of CO2 emitted
 
         # lbs of CO2 per:
-        self.kWh_weight = 0.01
+        self.kWh_weight = 0.8
         self.members_weight = 1.7
         self.housesize_weight = 0.15
         self.HVAC_weight = 0.85
@@ -44,7 +44,7 @@ class Carbon_Footprint:
         self.house_temp = summer_temp
 
     def set_kWh(self, n):
-        self.kWh = n * 365
+        self.kWh = n
 
     def set_type_of_food(self, n):
         self.type_of_food = n
@@ -68,19 +68,16 @@ class Carbon_Footprint:
         
         # calculating the amount of CO2
         # emitted through energy consumption
-        print(int(self.kWh * self.kWh_weight))
-        self.carbon_points += int(self.kWh * self.kWh_weight)
+        self.carbon_points += max(30, int(self.kWh * self.kWh_weight))
 
         # this takes the number of people in your house
         # and deducts more points based on if you live alone
         # or with others
-        print(int(self.household_members * self.members_weight))
-        self.carbon_points += int(self.household_members * self.members_weight)
+        self.carbon_points += max(30, int(self.household_members * self.members_weight))
 
         # take the amount of heating and cooling you prefer
         # and calculate how much CO2 you create
-        print(int(((self.summer_temperature - self.house_temp) * (self.house_size // 1000)) * self.HVAC_weight))
-        self.carbon_points += int(((self.summer_temperature - self.house_temp) * (self.house_size // 1000)) * self.HVAC_weight)
+        self.carbon_points += max(30, int(((self.summer_temperature - self.house_temp) * (self.house_size // 1000)) * self.HVAC_weight))
 
         # Add the points for house size (in sqft)
         self.carbon_points += self.house_size // 400
@@ -88,3 +85,5 @@ class Carbon_Footprint:
         self.carbon_points += self.dishwasher + self.transportation_type + self.type_of_food + self.washing_machine + self.appliances
 
         return self.carbon_points
+    def test(self):
+        print(self.kWh * self.kWh_weight)
