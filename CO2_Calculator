@@ -1,68 +1,35 @@
 #!/usr/bin/env python3
 
+# TODO
+# finish creating setter functions
+# finish calculation function
+# tests
+
 class Carbon_Footprint:
     def __init__(self):
         self.summer_temperature = 32
+        self.carbon_points = 0
+        self.answer_values = {
 
-        self.carbon_score = 0
-        self.lbs_CO2 = 0
-        self.kgs_CO2 = 0
+        }        
 
-        self.household_members = 0
-        self.home_size = 0
-        self.home_temp = 0
-        self.kWh = 0
+        # The Average Canadian creates 31808 lbs of CO2 per year
 
-        # These are the weights it shows 
-        # us how much impact each factor has
-        # on the amount of CO2 emitted
-
-        # lbs of CO2 per:
-        self.kWh_weight = 1.56
-        self.members_weight = 206.84
-        self.housesize_weight = 1.05
-        self.HVAC_weight = 1.8
-
-    # Setter Functions
-    def set_household_members(self, n):
-        self.household_members = n
-    
-    def set_home_size(self, n):
-        self.home_size = n
-    
-    def set_home_temp(self, summer_temp):
-        self.home_temp = summer_temp
-
-    def calculate_footprint(self) -> int:
-        self.lbs_CO2 = 0
-        
-        # calculating the amount of CO2
-        # emitted through energy consumption
-        self.lbs_CO2 += self.kWh * self.kWh_weight
-
-        # this takes the number of people in your house
-        # and deducts more points based on if you live alone
-        # or with others
-        self.lbs_CO2 += self.household_members * self.members_weight
-
-        # take the amount of heating and cooling you prefer
-        # and calculate how much CO2 you create
-        self.lbs_CO2 += ((self.summer_temperature - self.home_temp) * (self.home_size // 1000)) * self.HVAC_weight
-
-        self.kgs_CO2 = self.lbs_CO2/2.20462262
-        return self.kgs_CO2, self.lbs_CO2
-        # energy usage
-        # HVAC
-        # Type of house
-        # Transportation costs - (Bike/Drive)
-        # 
+        ######################################################
+        # energy usage -
+        # HVAC -
+        # Type of house -
         # Household Members (in real life to be more accurate)
         # All below have to take into account household members  
+        # house size
+
+
+        # dishwashers - Hang dry clothes, Light bulbs
         # Food bought
-        # Appliances - Hang dry clothes, Light bulbs
         # Water Consumption
-        # Home size
         # purchases - (clothes, electronics)
+        # Transportation costs - (Bike/Drive)
+
 
 
         # You feel lucky that you have a decent job
@@ -70,11 +37,95 @@ class Carbon_Footprint:
         # you get decent pay and some benefits
 
         # The problem? It's located downtown, some 40 minutes
-        # from your home. How do you plan to travel today?
+        # from your house. How do you plan to travel today?
         
         # Drive there
         # Take the bus
         # Use your 4 year old bike
+        ######################################################
     
 
+        # Variables that you change 
+        # based on your lifestyle
+        self.household_members = 0
+        self.house_size = 0
+        self.house_temp = 0
+        self.kWh = 0
+
+        self.type_of_food = 0
+        self.transportation_type = 0
+        self.dishwasher = 0
+        self.washing_machine = 0
+        self.appliances = 0
+        # These are the weights it shows
+        # us how much impact each factor has
+        # on the amount of CO2 emitted
+
+        # lbs of CO2 per:
+        self.kWh_weight = 0.01
+        self.members_weight = 1.7
+        self.housesize_weight = 0.15
+        self.HVAC_weight = 0.85
+
+    ########################################
+    # Setter Functions
+    def set_household_members(self, n):
+        self.household_members = n
+    
+    def set_house_size(self, n):
+        self.house_size = n
+    
+    def set_house_temp(self, summer_temp):
+        self.house_temp = summer_temp
+
+    def set_kWh(self, n):
+        self.kWh = n
+
+    def set_type_of_food(self, n):
+        self.type_of_food = n
+
+    def set_transportation_type(self, n):
+        self.transportation_type = n
+    
+    def set_dishwasher(self, n):
+        self.dishwasher = n
+    
+    def set_washing_machine(self, n):
+        self.washing_machine = n
+    
+    def set_appliances(self, n):
+        self.appliances = n
+    ########################################
+
+
+    def calculate_footprint(self) -> int:
+        self.carbon_points = 0
+        
+        # calculating the amount of CO2
+        # emitted through energy consumption
+        print(int(self.kWh * self.kWh_weight))
+        self.carbon_points += int(self.kWh * self.kWh_weight)
+
+        # this takes the number of people in your house
+        # and deducts more points based on if you live alone
+        # or with others
+        print(int(self.household_members * self.members_weight))
+        self.carbon_points += int(self.household_members * self.members_weight)
+
+        # take the amount of heating and cooling you prefer
+        # and calculate how much CO2 you create
+        print(int(((self.summer_temperature - self.house_temp) * (self.house_size // 1000)) * self.HVAC_weight))
+        self.carbon_points += int(((self.summer_temperature - self.house_temp) * (self.house_size // 1000)) * self.HVAC_weight)
+
+        self.carbon_points += self.house_size // 400
+
+        self.carbon_points += self.dishwasher + self.transportation_type + self.type_of_food
+
+        return self.carbon_points
+
 a = Carbon_Footprint()
+a.set_house_size(int(input("house Size in Sqft")))
+a.set_house_temp(int(input("house temp in c")))
+a.set_household_members(int(input("members")))
+a.set_kWh(int(input("kwh")))
+print(a.calculate_footprint())
