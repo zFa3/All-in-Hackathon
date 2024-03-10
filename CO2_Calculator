@@ -85,5 +85,3 @@ class Carbon_Footprint:
         self.carbon_points += self.dishwasher + self.transportation_type + self.type_of_food + self.washing_machine + self.appliances
 
         return self.carbon_points
-    def test(self):
-        print(self.kWh * self.kWh_weight)
