@@ -1,0 +1,50 @@
+
+
+.title-styling {
+    text-align: center;
+    font-size: 100px;
+}
+
+.header-styling {
+    text-align: center;
+    font-size: 35px;
+}
+
+.form-box {
+    background-color: grey;
+    color: black;
+    border: 3px solid black;
+    text-align: left;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    padding: 20px;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: "garamond", serif;
+}
+
+.slider-styling {
+    background-color: #150C31;
+    color: #E46D4D;
+    border: 5px solid black;
+    font-family: "copperplate", Fantasy;
+    font-size:25px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.taipy-button {
+    background-color: #150C31;
+    color: #E46D4D;
+    border: 5px solid black;
+}
+
+#submit-button {
+    background-color: #150C31;
+    color: #E46D4D;
+    border: 5px solid black;
+    text-align: left;
+    justify-content: center;
+    align-items: center;
+}
