@@ -76,10 +76,11 @@ class Carbon_Footprint:
     def calculate_footprint(self) -> int:
         self.carbon_points = 0
 
+        max_carbon_contribution = []
         # calculating the amount of CO2
         # emitted through energy consumption
         self.carbon_points += min(30, int(self.kWh * self.kWh_weight))
-        self.max_carbon_contribution.append(("kwh", min(30, int(self.kWh * self.kWh_weight))))
+        max_carbon_contribution.append(("kwh", min(30, int(self.kWh * self.kWh_weight))))
 
         # this takes the number of people in your house
         # and deducts more points based on if you live alone
@@ -90,17 +91,19 @@ class Carbon_Footprint:
         # and calculate how much CO2 you create
         self.carbon_points += min(30, int(((self.summer_temperature - self.house_temp) * (
                     self.house_size // 1000)) * self.HVAC_weight))
-        self.max_carbon_contribution.append(("summer_temp", min(30, int(((self.summer_temperature - self.house_temp) * (
+        max_carbon_contribution.append(("summer_temp", min(30, int(((self.summer_temperature - self.house_temp) * (
                     self.house_size // 1000)) * self.HVAC_weight))))
 
         # Add the points for house size (in sqft)
         self.carbon_points += self.house_size // 400
         # adding the rest of the non-input/non-slider questions
         self.carbon_points += self.dishwasher + self.transportation_type + self.type_of_food + self.washing_machine + self.appliances
-        self.max_carbon_contribution.append(("dishwasher", self.dishwasher))
-        self.max_carbon_contribution.append(("transport", self.transportation_type))
-        self.max_carbon_contribution.append(("food", self.type_of_food))
-        self.max_carbon_contribution.append(("wash", self.washing_machine))
-        self.max_carbon_contribution.append(("appliance", self.appliances))
+        max_carbon_contribution.append(("dishwasher", self.dishwasher))
+        max_carbon_contribution.append(("transport", self.transportation_type))
+        max_carbon_contribution.append(("food", self.type_of_food))
+        max_carbon_contribution.append(("wash", self.washing_machine))
+        max_carbon_contribution.append(("appliance", self.appliances))
+
+        self.max_carbon_contribution = max_carbon_contribution[:]
 
         return self.carbon_points
