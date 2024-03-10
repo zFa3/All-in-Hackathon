@@ -32,9 +32,47 @@
     font-style: italic;
 }
 
-.form-box {
+.form-box1 {
     /*background-color: #C8E6D1;*/
-    background-image: url(".image/LightCarbon.Png");
+    background-image: url("./images/LightCarbon.Png");
+    color: white;
+    border: 8px solid black;
+    text-align: left;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    padding: 20px;
+    font-size: 30px;
+    font-weight: thin;
+    font-family: "montserrat";
+    width: 75%;
+    margin-left: 12.5%;
+    margin-right: 12.5%;
+    /*font-family: "garamond", serif;*/
+}
+
+.form-box3 {
+    /*background-color: #C8E6D1;*/
+    background-image: url("./images/Trees and Cloud.Png");
+    color: white;
+    border: 8px solid black;
+    text-align: left;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    padding: 20px;
+    font-size: 30px;
+    font-weight: thin;
+    font-family: "montserrat";
+    width: 75%;
+    margin-left: 12.5%;
+    margin-right: 12.5%;
+    /*font-family: "garamond", serif;*/
+}
+
+.form-box2 {
+    /*background-color: #C8E6D1;*/
+    background-image: url("./images/Background_image.Png");
     color: white;
     border: 8px solid black;
     text-align: left;

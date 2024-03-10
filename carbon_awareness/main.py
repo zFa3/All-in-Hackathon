@@ -1,6 +1,7 @@
 from taipy import Gui
 from taipy.gui import Markdown
 from CO2_calculator import Carbon_Footprint
+import taipy
 
 co2 = Carbon_Footprint()
 
@@ -73,10 +74,46 @@ def read_Q9(state, id):
 
 def calculate_footprint(state):
     state.carbon_foot = co2.calculate_footprint()
-    # state.all_points = co2.max_carbon_contribution[]
-    # print(co2.carbon_points)
-    # new_content =
-    state.partial_a.update_content(state, f"{state.carbon_foot} Hey there")
+    state.all_points = sorted(co2.max_carbon_contribution, key=lambda x: x[1], reverse=True)
+    # print(state.all_points)
+    if state.all_points[0][0] == "kwh": solution1 = "Always remember to turn objects that use electricity off"
+    elif state.all_points[0][0] == "summer_temp": solution1 = "lower the thermostat in your house"
+    elif state.all_points[0][0] == "dishwasher": solution1 = "use less dishes in your daily lives to use the dishwasher less"
+    elif state.all_points[0][0] == "transport": solution1 = "consider taking the bus or biking more"
+    elif state.all_points[0][0] == "food": solution1 = "eat more vegetables!!!"
+    elif state.all_points[0][0] == "wash": solution1 = "only use washing machine when there are big loads of clothes"
+    else: solution1 = "buy less new appliances"
+
+    if state.all_points[1][0] == "kwh": solution2 = "Always remember to turn objects that use electricity off"
+    elif state.all_points[1][0] == "summer_temp": solution2 = "lower the thermostat in your house"
+    elif state.all_points[1][0] == "dishwasher": solution2 = "use less dishes in your daily lives to use the dishwasher less"
+    elif state.all_points[1][0] == "transport": solution2 = "consider taking the bus or biking more"
+    elif state.all_points[1][0] == "food": solution2 = "eat more vegetables!!!"
+    elif state.all_points[1][0] == "wash": solution2 = "only use washing machine when there are big loads of clothes"
+    else: solution2 = "buy less new appliances"
+
+    if state.all_points[2][0] == "kwh": solution3 = "Always remember to turn objects that use electricity off"
+    elif state.all_points[2][0] == "summer_temp": solution3 = "lower the thermostat in your house"
+    elif state.all_points[2][0] == "dishwasher": solution3 = "use less dishes in your daily lives to use the dishwasher less"
+    elif state.all_points[2][0] == "transport": solution3 = "consider taking the bus or biking more"
+    elif state.all_points[2][0] == "food": solution3 = "eat more vegetables!!!"
+    elif state.all_points[2][0] == "wash": solution3 = "only use washing machine when there are big loads of clothes"
+    else: solution3 = "buy less new appliances"
+
+    new_content = (f"You venture to your bedroom, ignoring a newspaper you picked up that mentions the negative"
+                   f"effects of carbon footprints. After all, you are just one person, so you can not possibly"
+                   f" contribute to the environment, right? "
+                   f"<br/><br/>"
+                   f"you carbon footprint is approximately: {state.carbon_foot}"
+                   f"<br/><br/>"
+                   f"Your top improvements you can make"
+                   f"<ol>"
+                   f"<li>{solution1}</li>"
+                   f"<li>{solution2}</li>"
+                   f"<li>{solution3}</li>"
+                   f"</ol>")
+    state.partial_a.update_content(state, new_content)
+    taipy.gui.navigate(state=state, to="/your-tailored-solutions")
 
 KWH = 20
 sqft = 800
@@ -99,7 +136,7 @@ Mind Your Carbon
 Take this quick (creative) survey see your carbon footprint
 |>
 
-<|container form-box|
+<|container form-box1|
 You yawn as you wake up to start a new day. After all, you live with...
 <br/>
 <|Just Myself|button|on_action=read_Q1|id=button1|>
@@ -119,7 +156,7 @@ protein in your meal! What type of contents are generally in your meals?
 
 <br/>
 You find a notice informing of your electrical bill, informing that your 
-kilowatt hour value for this month was
+kilowatt hour value for this day was
 <br/>
 <|container slider-styling|
 Slider value: <|{KWH}|> <br/>
@@ -194,9 +231,6 @@ not mean much to you as you already bought
 <br/>
 <|Submit|button|on_action=calculate_footprint|id=submit-button27|>
 <br/>
-
-<|Your tailored improvements|expandable|expanded=False|partial={partial_a}|>
-
 |>
 |>
 """)
@@ -210,13 +244,13 @@ Mind Your Carbon
 <center><|navbar|></center>
 <br/>
 
-<|container form-box|
+<|container form-box2|
 ##Daily Notification:
 |>
 |>
 """)
 
-game_mb = Markdown("""
+solution_mb = Markdown("""
 <|container body|
 <|container title-styling|
 Mind Your Carbon
@@ -226,14 +260,14 @@ Mind Your Carbon
 
 <br/>
 
-<|container form-box|
-embedded game
+<|container form-box3|
+<|Your tailored improvements|expandable|expanded=False|partial={partial_a}|>
 |>
 
 |>
 """)
 
-pages = {"survey_form":form_mb, "game":game_mb, "notification":noti_mb}
+pages = {"survey-form":form_mb, "your-tailored-solutions":solution_mb, "notification":noti_mb}
 
 gui = Gui(pages=pages, css_file="main.css")
 partial_a = gui.add_partial("""
