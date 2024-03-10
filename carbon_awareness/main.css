@@ -1,43 +1,52 @@
-
-
+/*Styling in CSS*/
+:root{
+    background-color: black;
+}
 .title-styling {
     text-align: center;
     font-size: 100px;
+    font-family: "montserrat";
 }
 
 .header-styling {
     text-align: center;
     font-size: 35px;
+    font-family: "garamond", serif;
+    color: white;
 }
 
 .form-box {
-    background-color: grey;
+    background-color: #C8E6D1;
     color: black;
-    border: 3px solid black;
+    border: 3px solid white;
     text-align: left;
     justify-content: center;
     align-items: center;
     margin-top: 40px;
     padding: 20px;
     font-size: 30px;
-    font-weight: bold;
-    font-family: "garamond", serif;
+    font-weight: thin;
+    font-family: "montserrat";
+    /*font-family: "garamond", serif;*/
 }
 
 .slider-styling {
-    background-color: #150C31;
-    color: #E46D4D;
-    border: 5px solid black;
-    font-family: "copperplate", Fantasy;
-    font-size:25px;
+    padding: 8px;
+    background-color: #96BB8F;
+    color: #0D3305;
+    border: 3px solid #2C663D;
+    font-family: "Lucida Console", Courier;
+    font-size:20px;
     text-align: center;
-    margin-top: 20px;
+    margin-top: 40px;
+    border-radius: 5rem;
 }
 
 .taipy-button {
-    background-color: #150C31;
-    color: #E46D4D;
-    border: 5px solid black;
+    background-color: #8FBB9C;
+    color: #0D3305;
+    border: 3px solid black;
+    border-radius: 5em;
 }
 
 #submit-button {
