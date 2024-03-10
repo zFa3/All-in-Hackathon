@@ -86,7 +86,7 @@ Mind Your Carbon
 <br/>
 
 <|container header-styling|
-Take this quick (creative) survey see your carbon footprint
+Take this quick quiz see your carbon footprint
 |>
 
 <|container form-box|
@@ -166,6 +166,7 @@ You quickly throw some clothes into the washing machine before you head
 to the kitchen. You ponder how fast your clothes get dirty, but then 
 again, you have used the washing machine
 <br/>
+<br/>
 <|9+ this week|button|on_action=read_Q8|id=button19|>
 <|4 - 9 times this week|button|on_action=read_Q8|id=button20|>
 <|1 - 3 times this week|button|on_action=read_Q8|id=button21|>
@@ -176,10 +177,17 @@ Afterward, you head to the kitchen to warm up a few beef patties in your
 new microwave. You sigh as you see a flyer for a new fridge, but it does 
 not mean much to you as you already bought
 <br/>
+<br/>
 <|7+ new appliances this year|button|on_action=read_Q9|id=button23|>
 <|5 - 7 new appliances this year|button|on_action=read_Q9|id=button24|>
 <|3 - 5 new appliances this year|button|on_action=read_Q9|id=button25|>
 <|less than 3 new appliances this year|button|on_action=read_Q9|id=button26|>
+
+<br/>
+You venture to your bedroom, ignoring a newspaper 
+you picked up that mentions the negative effects of 
+carbon footprints. After all, you're just one person, 
+so you can't possibly contribute to the environment, **right**{: .italics }? 
 
 <br/>
 <|Submit|button|on_action=calculate_footprint|id=submit-button27|>

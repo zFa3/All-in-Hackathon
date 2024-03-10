@@ -5,4 +5,4 @@ from daily_noti import noti_mb
 
 pages = {"survey_form":form_mb, "game":game_mb, "notification":noti_mb}
 
-Gui(pages=pages, css_file="main.css").run(use_reloader=True, port=5001)
+Gui(pages=pages, css_file="main.css").run(use_reloader=True, port=5001, stylekit=False)
