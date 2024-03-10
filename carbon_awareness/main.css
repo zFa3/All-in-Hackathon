@@ -3,6 +3,16 @@
     background-color: black;
 }
 
+::-webkit-scrollbar{
+    background-color: white;
+    scrollbar-color: #E46D4D;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: #59EBB9;
+    border-radius: 5rem;
+}
+
 .title-styling {
     text-align: center;
     font-size: 100px;
