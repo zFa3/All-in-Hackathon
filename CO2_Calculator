@@ -68,7 +68,7 @@ class Carbon_Footprint:
         
         # calculating the amount of CO2
         # emitted through energy consumption
-        self.carbon_points += max(30, int(self.kWh * self.kWh_weight))
+        self.carbon_points += max(30, int(self.kWh * self.kWh_weight)//100)
 
         # this takes the number of people in your house
         # and deducts more points based on if you live alone
