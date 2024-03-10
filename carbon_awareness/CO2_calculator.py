@@ -34,61 +34,64 @@ class Carbon_Footprint:
     # Setter Functions
     def set_household_members(self, n):
         self.household_members = n
-        print(self.household_members)
+        # print(self.household_members)
 
     def set_house_size(self, n):
         self.house_size = n
-        print(self.house_size)
+        # print(self.house_size)
 
     def set_house_temp(self, summer_temp):
         self.house_temp = summer_temp
-        print(self.house_temp)
+        # print(self.house_temp)
 
     def set_kWh(self, n):
         self.kWh = n
-        print(self.kWh)
+        # print(self.kWh)
 
     def set_type_of_food(self, n):
         self.type_of_food = n
-        print(self.type_of_food)
+        # print(self.type_of_food)
 
     def set_transportation_type(self, n):
         self.transportation_type = n
-        print(self.transportation_type)
+        # print(self.transportation_type)
 
     def set_dishwasher(self, n):
         self.dishwasher = n
-        print(self.dishwasher)
+        # print(self.dishwasher)
 
     def set_washing_machine(self, n):
         self.washing_machine = n
-        print(self.washing_machine)
+        # print(self.washing_machine)
 
     def set_appliances(self, n):
         self.appliances = n
-        print(self.appliances)
+        # print(self.appliances)
 
     ########################################
+
+    def return_all_vals(self):
+        return self.carbon_points
 
     def calculate_footprint(self) -> int:
         self.carbon_points = 0
 
         # calculating the amount of CO2
         # emitted through energy consumption
-        self.carbon_points += max(30, int(self.kWh * self.kWh_weight))
-        self.max_carbon_contribution.append(max(30, int(self.kWh * self.kWh_weight)))
+        self.carbon_points += min(30, int(self.kWh * self.kWh_weight))
+        self.max_carbon_contribution.append(min(30, int(self.kWh * self.kWh_weight)))
 
         # this takes the number of people in your house
         # and deducts more points based on if you live alone
         # or with others
-        self.carbon_points += max(30, int(self.household_members * self.members_weight))
-        self.max_carbon_contribution.append(max(30, int(self.household_members * self.members_weight)))
+        self.carbon_points += min(30, int(self.household_members * self.members_weight))
+        self.max_carbon_contribution.append(min(30, int(self.household_members * self.members_weight)))
 
         # take the amount of heating and cooling you prefer
         # and calculate how much CO2 you create
-        self.carbon_points += max(30, int(((self.summer_temperature - self.house_temp) * (
+        self.carbon_points += min(30, int(((self.summer_temperature - self.house_temp) * (
                     self.house_size // 1000)) * self.HVAC_weight))
-        self.max_carbon_contribution.append(max(30, int(((self.summer_temperature - self.house_temp) * (
+        self.max_carbon_contribution.append(min(30, int(((self.summer_temperature - self.house_temp) * (
                     self.house_size // 1000)) * self.HVAC_weight)))
 
         # Add the points for house size (in sqft)
@@ -103,6 +106,3 @@ class Carbon_Footprint:
         self.max_carbon_contribution.append(self.appliances)
 
         return self.carbon_points
-
-    def test(self):
-        print(self.kWh * self.kWh_weight)
