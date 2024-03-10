@@ -75,18 +75,18 @@ class Carbon_Footprint:
 
         # calculating the amount of CO2
         # emitted through energy consumption
-        self.carbon_points += max(30, int(self.kWh * self.kWh_weight))
+        self.carbon_points += min(30, int(self.kWh * self.kWh_weight))
         self.max_carbon_contribution.append(max(30, int(self.kWh * self.kWh_weight)))
 
         # this takes the number of people in your house
         # and deducts more points based on if you live alone
         # or with others
-        self.carbon_points += max(30, int(self.household_members * self.members_weight))
+        self.carbon_points += min(30, int(self.household_members * self.members_weight))
         self.max_carbon_contribution.append(max(30, int(self.household_members * self.members_weight)))
 
         # take the amount of heating and cooling you prefer
         # and calculate how much CO2 you create
-        self.carbon_points += max(30, int(((self.summer_temperature - self.house_temp) * (
+        self.carbon_points += min(30, int(((self.summer_temperature - self.house_temp) * (
                     self.house_size // 1000)) * self.HVAC_weight))
         self.max_carbon_contribution.append(max(30, int(((self.summer_temperature - self.house_temp) * (
                     self.house_size // 1000)) * self.HVAC_weight)))
