@@ -1,4 +1,4 @@
-This is our submission in the All in Hackathon hosted by MLH
+This is our submission in the All in Open Source Hackathon hosted by MLH
 
 The All in Hackathon or the "hackathon" is a 
 group activity where people work together to create 
